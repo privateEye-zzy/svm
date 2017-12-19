@@ -46,9 +46,9 @@ def showClassifer(X, Y, alphas, b):
         pts = np.array(pts)
         ax.scatter(pts[:, 0], pts[:, 1], label=label)
     # 绘制支持向量
-    # svInd = np.nonzero(alphas > 0)[0]
-    # for sv in X[svInd]:
-    #     plt.scatter(sv[0], sv[1], s=150, c='none', alpha=0.7, linewidth=1.5, edgecolor='#AB3319')
+    svInd = np.nonzero(alphas > 0)[0]
+    for sv in X[svInd]:
+        plt.scatter(sv[0], sv[1], s=150, c='none', alpha=0.7, linewidth=1.5, edgecolor='#AB3319')
     plt.show()
 # 核函数，将数据从低维特征空间映射到高维特征空间，并且直接在低维空间中计算内积隐式的表现出高维空间中的结果
 def kernelTrans(X, x, kTup):
@@ -202,4 +202,4 @@ if __name__ == '__main__':
     # saveStore(b=b, alphas=alphas)  # 持久化模型参数
     b, alphas = laodStore()  # 从训练好的模型中取出参数
     loss(X=X, Y=Y, alphas=alphas, b=b)
-    # showClassifer(X=X, Y=Y, alphas=alphas, b=b)
+    showClassifer(X=X, Y=Y, alphas=alphas, b=b)
